@@ -1,14 +1,18 @@
 var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
+var cityName;
 var currentTemperature;
 var currentHumidity;
 var currentWind;
-var currentUV;
+var currentUVI;
 
 
 
 
 function getWeather(city) {
+
+    cityName = city;
+
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
     fetch(currentWeatherUrl)
@@ -28,7 +32,11 @@ function getWeather(city) {
             fetch(oneCallUrl)
                 .then((data) => data.json())
                 .then(function (oneCallData) {
+
                     currentTemperature = oneCallData.current.temp
+                    currentHumidity = oneCallData.current.humidity 
+                    currentWind = oneCallData.current.wind_speed
+                    currentUVI = oneCallData.current.uvi
 
                     console.log(oneCallData.current.temp);
                 });
@@ -37,6 +45,11 @@ function getWeather(city) {
 }
 
 function displayCityInfo() {
+    var displayCurrent = document.getElementById("displayCity");
+
+    displayCurrent.innerHTML = `${cityName}: ${currentTemperature}&#176`
+
+    console.log(currentTemperature);
 
 
 }
@@ -47,6 +60,7 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
     e.preventDefault();
     var searchCity = document.getElementById("userInput").value;
     getWeather(searchCity);
+    displayCityInfo();
 
 })
 
