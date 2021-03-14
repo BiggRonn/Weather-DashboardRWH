@@ -17,6 +17,9 @@ form{
     background-color: rgb(79, 134, 79);
 }
 
+.forecastCard{
+    margin: 8px;
+}
 
 .row1 { 
     height:400px;

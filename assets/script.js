@@ -72,11 +72,13 @@ function displayCurrentInfo() {
     var weatherDisplay = document.getElementById("currentweather");
     
     weatherDisplay.innerHTML = 
-    `<h2 class="text-light">${cityName}</h2>
-    <div class="text-light">Temperature: ${currentTemp}&#176</div>
-    <div class="text-light">Humidity: ${currentHumidity}%        
-    <div class="text-light">Wind-Speed: ${currentWind}</div>
-    <div class="text-light">UVI: ${currentUVI}</div></div>`
+
+    `<div class= "card-body">
+    <h2 class="card-title text-light">${cityName}</h2>
+    <div class="card-text text-light">Temperature: ${currentTemp}&#176</div>
+    <div class= "card-text text-light">Humidity: ${currentHumidity}%        
+    <div class="card-text text-light">Wind-Speed: ${currentWind}</div>
+    <div class="card-text text-light">UVI: ${currentUVI}</div></div>`
 
 }
 
@@ -86,7 +88,7 @@ function displayForeCast(){
     fiveDay.innerHTML = "";//resets innerHTML
 
     for( i = 0; i < 5; i++){
-        fiveDay.innerHTML += `<h4>Temperature: ${forecastTemp[i]}</h4><div>Humidity: ${forecastHumidity[i]}</div>` 
+        fiveDay.innerHTML += `<h6>Temperature: ${forecastTemp[i]}</h6><div>Humidity: ${forecastHumidity[i]}</div>` 
     }   
     
 }
