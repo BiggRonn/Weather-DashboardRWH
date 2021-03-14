@@ -53,13 +53,13 @@ function getWeather(city) {
 
                     //stores data for our forecast display... each index in the array is a day
                     for(i=0; i< 5 ;i++){
-                        forecastTemp.push(oneCallData.daily[i].temp)
+                        forecastTemp.push(oneCallData.daily[i].temp.day)
                         forecastHumidity.push(oneCallData.daily[i].humidity)
                         
                     }
-                    
+                    displayForeCast();
 
-                    //console.log(oneCallData.daily[0]);
+                    console.log(oneCallData.daily[0].temp);
 
 
                 });
@@ -85,8 +85,9 @@ function displayForeCast(){
     
     fiveDay.innerHTML = "";//resets innerHTML
 
-    //for( i = 0; i < 5; i++){
-        fiveDay.innerHTML = `<h4>Temperature: ${forecastTemp}</h4><div>Humidity: ${forecastHumidity}</div>`    
+    for( i = 0; i < 5; i++){
+        fiveDay.innerHTML += `<h4>Temperature: ${forecastTemp[i]}</h4><div>Humidity: ${forecastHumidity[i]}</div>` 
+    }   
     
 }
 
