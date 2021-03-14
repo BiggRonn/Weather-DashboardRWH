@@ -1,7 +1,7 @@
 var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
 var cityName;
-var weatherDisplay = document.getElementById("currentweather");
+
 var pastDisplay = document.getElementById("pastsearch");
 
 //variables to store current weather data returned from the oneCallUrl
@@ -52,11 +52,12 @@ function getWeather(city) {
 }
 
 function displayCityInfo() {
-
-
-    var displayCurrent = document.getElementById("displayCity");
-
-    displayCurrent.innerHTML = `${cityName}: ${currentTemp}&#176 Humidity:${currentHumidity} Wind-Speed:${currentWind} UVI:${currentUVI}`
+    var weatherDisplay = document.getElementById("currentweather");
+    
+    weatherDisplay.innerHTML = 
+    `<h2>${cityName} </h2>
+    <div>${currentTemp}&#176</div>
+    <div> Humidity:${currentHumidity}   Wind-Speed:${currentWind}   UVI:${currentUVI}</div>`
 
 
 
