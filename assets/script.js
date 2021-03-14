@@ -55,11 +55,11 @@ function displayCityInfo() {
     var weatherDisplay = document.getElementById("currentweather");
     
     weatherDisplay.innerHTML = 
-    `<h2>${cityName} </h2>
-    <div>${currentTemp}&#176</div>
-    <div> Humidity:${currentHumidity}   Wind-Speed:${currentWind}   UVI:${currentUVI}</div>`
-
-
+    `<h2 class="text-light">${cityName} </h2>
+    <div class="text-light">${currentTemp}&#176</div>
+    <div class="text-light">Humidity: ${currentHumidity}        
+    <div class="text-light">Wind-Speed: ${currentWind}</div>
+    <div class="text-light">UVI: ${currentUVI}</div></div>`
 
 }
 
