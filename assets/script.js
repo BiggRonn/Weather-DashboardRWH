@@ -1,11 +1,16 @@
 var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
 var cityName;
+var weatherDisplay = document.getElementById("currentweather");
+var pastDisplay = document.getElementById("pastsearch");
 
+//variables to store current weather data returned from the oneCallUrl
 var currentTemp;
 var currentHumidity;
 var currentWind;
 var currentUVI;
+//variables to store 5 day forcast weather
+
 
 
 

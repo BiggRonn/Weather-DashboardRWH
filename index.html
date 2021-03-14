@@ -11,25 +11,25 @@
     <title>Weather Dashboard</title>
 </head>
 
-<body>
+<body class= "">
     <header class="card-header text-center bg-secondary text-white">Weather Dashbaord</header>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 border border-danger">
-                <form id="searchForm" class="">
+                <form id="searchForm">
                     <h2>Search for a City</h2>
                     <input type="text" id="userInput">
                     <button type="submit" class="bg-primary rounded-pill">&#x1F50D</button>
                 </form>
             </div>
-            <div class="col-8 bg-danger" id="displayCity">
+            <div class="col-8 bg-danger" id="currentweather">
 
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-4 border border-success">
+        <div id = "pastsearch"class="col-4 border border-success">
             search history
         </div>
         <div class="col-8 bg-success" id="fiveday">
