@@ -1,7 +1,8 @@
 var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
 var cityName;
-var currentTemperature;
+
+var currentTemp;
 var currentHumidity;
 var currentWind;
 var currentUVI;
@@ -33,23 +34,25 @@ function getWeather(city) {
                 .then((data) => data.json())
                 .then(function (oneCallData) {
 
-                    currentTemperature = oneCallData.current.temp
+                    currentTemp = oneCallData.current.temp
                     currentHumidity = oneCallData.current.humidity 
                     currentWind = oneCallData.current.wind_speed
                     currentUVI = oneCallData.current.uvi
+                    displayCityInfo();
 
-                    console.log(oneCallData.current.temp);
                 });
         });
+        ;
 
 }
 
 function displayCityInfo() {
+
+
     var displayCurrent = document.getElementById("displayCity");
 
-    displayCurrent.innerHTML = `${cityName}: ${currentTemperature}&#176`
+    displayCurrent.innerHTML = `${cityName}: ${currentTemp}&#176 Humidity:${currentHumidity} Wind-Speed:${currentWind} UVI:${currentUVI}`
 
-    console.log(currentTemperature);
 
 
 }
@@ -60,7 +63,7 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
     e.preventDefault();
     var searchCity = document.getElementById("userInput").value;
     getWeather(searchCity);
-    displayCityInfo();
+    
 
 })
 
