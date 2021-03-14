@@ -14,6 +14,7 @@ var currentUVI;
 //variables to store 5 day forcast weather. They will be objects that are assigned attributes by the getWeather function
 var forecastTemp = [];
 var forecastHumidity = [];
+var forecastIcon;
 
 
 
@@ -88,7 +89,7 @@ function displayForeCast(){
     fiveDay.innerHTML = "";//resets innerHTML
 
     for( i = 0; i < 5; i++){
-        fiveDay.innerHTML += `<h6>Temperature: ${forecastTemp[i]}</h6><div>Humidity: ${forecastHumidity[i]}</div>` 
+        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">Temperature: ${forecastTemp[i]}</h6><div class="card-text">Humidity: ${forecastHumidity[i]}</div>` 
     }   
     
 }

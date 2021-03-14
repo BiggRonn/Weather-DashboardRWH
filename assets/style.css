@@ -17,7 +17,10 @@ form{
     background-color: rgb(79, 134, 79);
 }
 
-.forecastCard{
+.fCard{
+    
+    width: 180px;
+    padding: 4px;
     margin: 8px;
 }
 
