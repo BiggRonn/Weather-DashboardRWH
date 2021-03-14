@@ -13,4 +13,4 @@ This application will take a city input by the user and display the current weat
 # Deployed Site
 https://biggronn.github.io/Weather-DashboardRWH/
 
-http://openweathermap.org/img/wn/${ICONFROMAPI}@2x.png 
+http://openweathermap.org/img/wn/${ICONFROMAPI}@2x.png <!-- -->

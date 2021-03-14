@@ -60,7 +60,7 @@ function getWeather(city) {
                     }
                     displayForeCast();
 
-                    console.log(oneCallData.daily[0].temp);
+                    //console.log(oneCallData.daily[0].temp);
 
 
                 });
@@ -69,13 +69,15 @@ function getWeather(city) {
 
 }
 
+
 function displayCurrentInfo() {
+    var date = new Date();
     var weatherDisplay = document.getElementById("currentweather");
-    
+    console.log(date.toLocaleString('en-US'));
     weatherDisplay.innerHTML = 
 
     `<div class= "card-body">
-    <h2 class="card-title text-light">${cityName}</h2>
+    <h2 class="card-title text-light">${cityName} ${date.toLocaleString('en-US',{month: "numeric", day: "numeric", year: "numeric"})}</h2>
     <div class="card-text text-light">Temperature: ${currentTemp}&#176</div>
     <div class= "card-text text-light">Humidity: ${currentHumidity}%        
     <div class="card-text text-light">Wind-Speed: ${currentWind}</div>
@@ -83,13 +85,20 @@ function displayCurrentInfo() {
 
 }
 
+
 function displayForeCast(){
+    var date = new Date();
+    
+    
     var fiveDay = document.getElementById("fiveday");
     
     fiveDay.innerHTML = "";//resets innerHTML
-
+    
+    
     for( i = 0; i < 5; i++){
-        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">Temperature: ${forecastTemp[i]}</h6><div class="card-text">Humidity: ${forecastHumidity[i]}</div>` 
+        //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
+        date.setDate(date.getDate()+1);
+        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US',{month: "numeric", day: "numeric", year: "numeric"})}</h6><div class="card-text">Humidity: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>` 
     }   
     
 }
