@@ -2,6 +2,9 @@ var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
 var cityName;
 
+//and array to store all search history data under one key, should make accessing data easier
+var searchHistory = [];
+
 var pastDisplay = document.getElementById("pastsearch");
 
 //variables to store current weather data returned from the oneCallUrl
@@ -32,7 +35,7 @@ function getWeather(city) {
         .then(function (weather) {
 
 
-            if (weather.code === 404) {
+            if (weather.cod === "404") {
                 alert("City not found");
                 return;
             }
@@ -98,7 +101,7 @@ function displayForeCast(){
     for( i = 0; i < 5; i++){
         //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
         date.setDate(date.getDate()+1);
-        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US',{month: "numeric", day: "numeric", year: "numeric"})}</h6><div class="card-text">Humidity: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>` 
+        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US',{month: "numeric", day: "numeric", year: "numeric"})}</h6><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>` 
     }   
     
 }
