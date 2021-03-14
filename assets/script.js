@@ -6,16 +6,16 @@ var pastDisplay = document.getElementById("pastsearch");
 
 //variables to store current weather data returned from the oneCallUrl
 var currentTemp;
+var currentIcon;
 var currentHumidity;
 var currentWind;
 var currentUVI;
 
 //variables to store 5 day forcast weather. They will be objects that are assigned attributes by the getWeather function
-var forecast1 = {};
-var forecast2 = {};
-var forecast3 = {};
-var forecast4 = {};
-var forecast5 = {};
+var forecastTemp = [];
+var forecastHumidity = [];
+
+
 
 
 
@@ -44,16 +44,23 @@ function getWeather(city) {
                 .then((data) => data.json())
                 .then(function (oneCallData) {
 
+                    //sets our global variables to data from API
                     currentTemp = oneCallData.current.temp
                     currentHumidity = oneCallData.current.humidity 
                     currentWind = oneCallData.current.wind_speed
                     currentUVI = oneCallData.current.uvi
-                    displayCityInfo();
+                    displayCurrentInfo();
 
-                    for(i = 0; i < 5; i++){
-                        for
-
+                    //stores data for our forecast display... each index in the array is a day
+                    for(i=0; i< 5 ;i++){
+                        forecastTemp.push(oneCallData.daily[i].temp)
+                        forecastHumidity.push(oneCallData.daily[i].humidity)
+                        
                     }
+                    
+
+                    //console.log(oneCallData.daily[0]);
+
 
                 });
         });
@@ -61,16 +68,26 @@ function getWeather(city) {
 
 }
 
-function displayCityInfo() {
+function displayCurrentInfo() {
     var weatherDisplay = document.getElementById("currentweather");
     
     weatherDisplay.innerHTML = 
-    `<h2 class="text-light">${cityName} </h2>
-    <div class="text-light">${currentTemp}&#176</div>
-    <div class="text-light">Humidity: ${currentHumidity}        
+    `<h2 class="text-light">${cityName}</h2>
+    <div class="text-light">Temperature: ${currentTemp}&#176</div>
+    <div class="text-light">Humidity: ${currentHumidity}%        
     <div class="text-light">Wind-Speed: ${currentWind}</div>
     <div class="text-light">UVI: ${currentUVI}</div></div>`
 
+}
+
+function displayForeCast(){
+    var fiveDay = document.getElementById("fiveday");
+    
+    fiveDay.innerHTML = "";//resets innerHTML
+
+    //for( i = 0; i < 5; i++){
+        fiveDay.innerHTML = `<h4>Temperature: ${forecastTemp}</h4><div>Humidity: ${forecastHumidity}</div>`    
+    
 }
 
 
