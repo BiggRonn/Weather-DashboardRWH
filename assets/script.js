@@ -9,8 +9,13 @@ var currentTemp;
 var currentHumidity;
 var currentWind;
 var currentUVI;
-//variables to store 5 day forcast weather
 
+//variables to store 5 day forcast weather. They will be objects that are assigned attributes by the getWeather function
+var forecast1 = {};
+var forecast2 = {};
+var forecast3 = {};
+var forecast4 = {};
+var forecast5 = {};
 
 
 
@@ -44,6 +49,11 @@ function getWeather(city) {
                     currentWind = oneCallData.current.wind_speed
                     currentUVI = oneCallData.current.uvi
                     displayCityInfo();
+
+                    for(i = 0; i < 5; i++){
+                        for
+
+                    }
 
                 });
         });

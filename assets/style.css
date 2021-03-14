@@ -1,0 +1,23 @@
+body{
+    background-image: url(./images/bgweather.jpg);
+    background-size: cover;
+}
+
+footer{
+    padding: 4px;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    padding: 46px;
+    margin: 15px;
+    background-color: rgb(79, 134, 79);
+}
+
+.row1 { 
+    height:400px;
+    padding: 20px;
+}
