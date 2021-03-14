@@ -28,6 +28,8 @@ function getWeather(city) {
 
     cityName = city;
 
+    searchHistory.push(cityName);
+
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
     fetch(currentWeatherUrl)
@@ -62,8 +64,9 @@ function getWeather(city) {
                         
                     }
                     displayForeCast();
+                    storeSearch();
 
-                    //console.log(oneCallData.daily[0].temp);
+                    console.log(searchHistory);
 
 
                 });
@@ -104,6 +107,10 @@ function displayForeCast(){
         fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US',{month: "numeric", day: "numeric", year: "numeric"})}</h6><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>` 
     }   
     
+}
+
+function storeSearch(){
+    localStorage.setItem('history', JSON.stringify(searchHistory));
 }
 
 
