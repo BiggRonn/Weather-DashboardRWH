@@ -66,6 +66,7 @@ function getWeather(city) {
                         forecastTemp.push(oneCallData.daily[i].temp.day)
                         forecastHumidity.push(oneCallData.daily[i].humidity)
                         forecastIcon.push(oneCallData.daily[i].weather[0].icon)
+                        console.log(oneCallData.daily[i].weather[0].icon)
 
                     }
 
@@ -116,7 +117,7 @@ function displayForeCast() {
     for (i = 0; i < 5; i++) {
         //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
         date.setDate(date.getDate() + 1);
-        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6><img class ="wIcons"src= http://openweathermap.org/img/wn/${currentIcon}@2x.png ><img><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>`
+        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6><img class ="wIcons" src= http://openweathermap.org/img/wn/${forecastIcon[i]}@2x.png ><img><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>`
     }
 
 }
