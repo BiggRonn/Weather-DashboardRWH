@@ -51,3 +51,9 @@ li{
     height:400px;
     padding: 20px;
 }
+
+.wIcons{
+    background-color: blue;
+    height: 60px;
+    width: 60px;
+}

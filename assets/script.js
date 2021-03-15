@@ -17,7 +17,7 @@ var currentUVI;
 //variables to store 5 day forcast weather. They will be objects that are assigned attributes by the getWeather function
 var forecastTemp = [];
 var forecastHumidity = [];
-var forecastIcon;
+var forecastIcon= [];
 
 
 
@@ -56,12 +56,16 @@ function getWeather(city) {
                     currentHumidity = oneCallData.current.humidity
                     currentWind = oneCallData.current.wind_speed
                     currentUVI = oneCallData.current.uvi
+                    currentIcon = oneCallData.current.weather[0].icon
+                    console.log(oneCallData.current.weather[0].icon);
+                    console.log(oneCallData.daily[i].weather[0].icon);
                     displayCurrentInfo();
 
                     //stores data for our forecast display... each index in the array is a day
                     for (i = 0; i < 5; i++) {
                         forecastTemp.push(oneCallData.daily[i].temp.day)
                         forecastHumidity.push(oneCallData.daily[i].humidity)
+                        forecastIcon.push(oneCallData.daily[i].weather[0].icon)
 
                     }
 
@@ -91,7 +95,7 @@ function displayCurrentInfo() {
     weatherDisplay.innerHTML =
 
         `<div class= "card-body">
-    <h2 class="card-title text-light">${cityName} ${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h2>
+    <h2 class="card-title text-light">${cityName} <img class ="wIcons" src = "http://openweathermap.org/img/wn/${currentIcon}@2x.png"></img> ${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h2>
     <div class="card-text text-light">Temperature: ${currentTemp}&#176</div>
     <div class= "card-text text-light">Humidity: ${currentHumidity}%        
     <div class="card-text text-light">Wind-Speed: ${currentWind}</div>
@@ -112,7 +116,7 @@ function displayForeCast() {
     for (i = 0; i < 5; i++) {
         //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
         date.setDate(date.getDate() + 1);
-        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>`
+        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6><img class ="wIcons"src= http://openweathermap.org/img/wn/${currentIcon}@2x.png ><img><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>`
     }
 
 }
