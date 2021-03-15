@@ -7,8 +7,9 @@ footer{
     padding: 4px;
     position: absolute;
     bottom: 0;
-    justify-content: center;
+    
     align-items: center;
+    text-align: center;
 }
 
 form{
@@ -16,8 +17,12 @@ form{
     margin: 15px;
     background-color: rgb(79, 134, 79);
 }
+li{
+  
+}
 
-.searchlist{
+.searchlist:hover{ 
+    cursor: pointer;
     
 }
 

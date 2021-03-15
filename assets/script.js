@@ -3,7 +3,7 @@ var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 var cityName;
 
 //and array to store all search history data under one key, should make accessing data easier
-var searchHistory = [];
+var searchHistory = JSON.parse(localStorage.getItem('history'));
 
 
 
@@ -28,7 +28,7 @@ function getWeather(city) {
 
     cityName = city;
 
-    
+
 
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
@@ -44,6 +44,7 @@ function getWeather(city) {
 
             var lat = weather.coord.lat;
             var lon = weather.coord.lon;
+
 
             const oneCallUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${api_key}&units=imperial`;
             fetch(oneCallUrl)
@@ -63,7 +64,11 @@ function getWeather(city) {
                         forecastHumidity.push(oneCallData.daily[i].humidity)
 
                     }
-                    searchHistory.push(cityName);
+
+                    if(!(searchHistory.includes(cityName))){
+                        searchHistory.push(cityName)
+                    }
+                    
                     displayForeCast();
 
                     localStorage.setItem('history', JSON.stringify(searchHistory));
@@ -115,36 +120,36 @@ function displayForeCast() {
 function displayHistory() {
     var pastDisplay = document.getElementById("pastsearch");
     pastDisplay.innerHTML = "";
-    
+
 
     var hist = JSON.parse(localStorage.getItem('history'));
 
-    
-    for(i = 0; i < hist.length; i++){
+
+    for (i = 0; i < hist.length; i++) {
         pastDisplay.innerHTML += `<li class="searchlist">${hist[i]}</li>`;
     }
-   
+
     //IDK why I couldn't get the forEach loop to work on hist? 
     //hist.forEach((city) => function() {
     //     pastDisplay.innerHTML = `<li>WAEFASDGAWEAGEWGAW</li>`;
     // }
 
     // )
-    
+
 }
 
 
-//initializes button functionality
 
-function init(){
+
+function init() {
     displayHistory();
     document.getElementById("searchForm").addEventListener("submit", function (e) {
         e.preventDefault();
         var searchCity = document.getElementById("userInput").value;
         getWeather(searchCity);
     })
-    
-    document.getElementById("pastsearch").addEventListener("click", function(e){
+
+    document.getElementById("pastsearch").addEventListener("click", function (e) {
         e.preventDefault();
 
         //console.log(e.target.textContent);
@@ -152,7 +157,7 @@ function init(){
         getWeather(e.target.textContent);
 
 
-    } )
+    })
 
 
 }
