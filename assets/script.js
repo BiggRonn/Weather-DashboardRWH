@@ -3,7 +3,7 @@ var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 var cityName;
 
 //and array to store all search history data under one key, should make accessing data easier
-var searchHistory = JSON.parse(localStorage.getItem('history'));
+var searchHistory = JSON.parse(localStorage.getItem('history')) || [];
 
 //variables to store current weather data returned from the oneCallUrl
 var currentTemp;
@@ -33,6 +33,7 @@ function getWeather(city) {
             fetch(oneCallUrl)
                 .then((data) => data.json())
                 .then(function (oneCallData) {
+                    
 
                     //sets our global variables to data from API
                     currentTemp = oneCallData.current.temp
@@ -40,8 +41,7 @@ function getWeather(city) {
                     currentWind = oneCallData.current.wind_speed
                     currentUVI = oneCallData.current.uvi
                     currentIcon = oneCallData.current.weather[0].icon
-                    console.log(oneCallData.current.weather[0].icon);
-                    console.log(oneCallData.daily[i].weather[0].icon);
+                   
                     displayCurrentInfo();
 
                     //stores data for our forecast display... each index in the array is a day
@@ -49,7 +49,7 @@ function getWeather(city) {
                         forecastTemp.push(oneCallData.daily[i].temp.day)
                         forecastHumidity.push(oneCallData.daily[i].humidity)
                         forecastIcon.push(oneCallData.daily[i].weather[0].icon)
-                        console.log(oneCallData.daily[i].weather[0].icon)
+                       
 
                     }
                     if(!(searchHistory.includes(cityName))){
@@ -91,13 +91,17 @@ function displayForeCast() {
 function displayHistory() {
     var pastDisplay = document.getElementById("pastsearch");
     pastDisplay.innerHTML = "";
-var hist = JSON.parse(localStorage.getItem('history'));
+    var hist = JSON.parse(localStorage.getItem('history'));
+   // console.log(hist);
      for (i = 0; i < hist.length; i++) {
-        pastDisplay.innerHTML += `<li class="searchlist">${hist[i]}</li>`;
+       pastDisplay.innerHTML += `<li class="searchlist">${hist[i]}</li>`;
     }
 }
 function init() {
-    displayHistory();
+   
+        displayHistory();
+    
+
     document.getElementById("searchForm").addEventListener("submit", function (e) {
         e.preventDefault();
         var searchCity = document.getElementById("userInput").value;
