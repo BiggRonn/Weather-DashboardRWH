@@ -124,7 +124,8 @@ function displayHistory() {
         pastDisplay.innerHTML += `<li class="searchlist">${hist[i]}</li>`;
     }
    
-    // hist.forEach((city) => function() {
+    //IDK why I couldn't get the forEach loop to work on hist? 
+    //hist.forEach((city) => function() {
     //     pastDisplay.innerHTML = `<li>WAEFASDGAWEAGEWGAW</li>`;
     // }
 
@@ -134,15 +135,30 @@ function displayHistory() {
 
 
 //initializes button functionality
-document.getElementById("searchForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var searchCity = document.getElementById("userInput").value;
-    getWeather(searchCity);
+
+function init(){
+    displayHistory();
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var searchCity = document.getElementById("userInput").value;
+        getWeather(searchCity);
+    })
+    
+    document.getElementById("pastsearch").addEventListener("click", function(e){
+        e.preventDefault();
+
+        //console.log(e.target.textContent);
+
+        getWeather(e.target.textContent);
 
 
-})
+    } )
 
-displayHistory();
+
+}
+
+init();
+
 
 
 
