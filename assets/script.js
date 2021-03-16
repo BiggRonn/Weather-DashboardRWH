@@ -69,7 +69,7 @@ function displayCurrentInfo() {
     var weatherDisplay = document.getElementById("currentweather");
     weatherDisplay.innerHTML =
  `<div class= "card-body">
-    <h2 class="card-title text-light">${cityName} <img class ="wIcons" src = "http://openweathermap.org/img/wn/${currentIcon}@2x.png"></img> ${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h2>
+    <h2 class="card-title text-light">${cityName} <img class ="wIcons" src = "https://openweathermap.org/img/wn/${currentIcon}@2x.png"></img> ${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h2>
     <div class="card-text text-light">Temperature: ${currentTemp}&#176</div>
     <div class= "card-text text-light">Humidity: ${currentHumidity}%        
     <div class="card-text text-light">Wind-Speed: ${currentWind}</div>
@@ -91,10 +91,10 @@ function displayForeCast() {
 function displayHistory() {
     var pastDisplay = document.getElementById("pastsearch");
     pastDisplay.innerHTML = "";
-    var hist = JSON.parse(localStorage.getItem('history'));
-   // console.log(hist);
-     for (i = 0; i < hist.length; i++) {
-       pastDisplay.innerHTML += `<li class="searchlist">${hist[i]}</li>`;
+    ;
+    console.log(searchHistory);
+     for (i = 0; i < searchHistory.length; i++) {
+       pastDisplay.innerHTML += `<li class="searchlist">${searchHistory[i]}</li>`;
     }
 }
 function init() {
