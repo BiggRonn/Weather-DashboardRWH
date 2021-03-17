@@ -1,4 +1,4 @@
-var api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
+const api_key = "7e4dc32eeeff2ca5b970045a0cb819aa";
 
 var cityName;
 
@@ -42,26 +42,33 @@ function getWeather(city) {
                     currentUVI = oneCallData.current.uvi
                     currentIcon = oneCallData.current.weather[0].icon
                    
-                    displayCurrentInfo();
+                    
 
                     //stores data for our forecast display... each index in the array is a day
-                    for (i = 0; i < 5; i++) {
+                    forecastTemp = [];
+                    forecastHumidity = [];
+                    forecastIcon= [];
+                    for (let i = 0; i < 5; i++) {
                         forecastTemp.push(oneCallData.daily[i].temp.day)
                         forecastHumidity.push(oneCallData.daily[i].humidity)
                         forecastIcon.push(oneCallData.daily[i].weather[0].icon)
                        
 
                     }
+                    
                     if(!(searchHistory.includes(cityName))){
                         searchHistory.push(cityName)
                     }
-                    displayForeCast();
-                     localStorage.setItem('history', JSON.stringify(searchHistory));
-displayHistory();
-                });
-        });
-    ;
 
+                    displayForeCast();
+                    displayCurrentInfo();
+                    displayHistory();
+                    localStorage.setItem('history', JSON.stringify(searchHistory));
+
+                });
+            });
+            ;
+            
 }
 
 function displayCurrentInfo() {
@@ -81,10 +88,17 @@ function displayForeCast() {
     var date = new Date();
     var fiveDay = document.getElementById("fiveday");
     fiveDay.innerHTML = "";//resets innerHTML
-    for (i = 0; i < 5; i++) {
-        //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
+    
+    //argument-getDate() will return the numerical day of the month with functionality for end and start of month ( (1 - 1) will be last day of previous month instead of 0).
+    for (let i = 0; i < 5; i++) {
         date.setDate(date.getDate() + 1);
-        fiveDay.innerHTML += `<div class="card fCard" ><h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6><img class ="wIcons" src= http://openweathermap.org/img/wn/${forecastIcon[i]}@2x.png ><img><div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div></div>`
+        fiveDay.innerHTML += `
+        <div class="card fCard" >
+        <h6 class="card-title">${date.toLocaleString('en-US', { month: "numeric", day: "numeric", year: "numeric" })}</h6>
+        <img class ="wIcons" src= https://openweathermap.org/img/wn/${forecastIcon[i]}@2x.png ><img>
+        <div class="card-text">Temperature: ${forecastTemp[i]}</div><div class="card-text">Humidity: ${forecastHumidity[i]}</div>
+        </div>`
+        
     }
 }
 
@@ -92,11 +106,12 @@ function displayHistory() {
     var pastDisplay = document.getElementById("pastsearch");
     pastDisplay.innerHTML = "";
     ;
-    console.log(searchHistory);
-     for (i = 0; i < searchHistory.length; i++) {
+    
+     for (let i = 0; i < searchHistory.length; i++) {
        pastDisplay.innerHTML += `<li class="searchlist">${searchHistory[i]}</li>`;
     }
 }
+
 function init() {
    
         displayHistory();
@@ -109,7 +124,7 @@ function init() {
     })
     document.getElementById("pastsearch").addEventListener("click", function (e) {
         e.preventDefault();
- getWeather(e.target.textContent);
+        getWeather(e.target.textContent);
     })
 }
 

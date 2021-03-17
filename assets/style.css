@@ -1,11 +1,12 @@
 body{
     background-image: url(./images/bgweather.jpg);
     background-size: cover;
+    position: relative;
 }
 
 footer{
     padding: 4px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     
     align-items: center;
